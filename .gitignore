@@ -1,0 +1,10 @@
+.*
+!.gitignore
+!.editorconfig
+
+target/
+/data
+
+# IDE
+.idea/
+.vscode/

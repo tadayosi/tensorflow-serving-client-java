@@ -3,7 +3,6 @@ package com.github.tadayosi.tensorflow.serving.client;
 import org.junit.jupiter.api.BeforeEach;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
-import org.testcontainers.images.builder.Transferable;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.utility.MountableFile;

@@ -61,15 +61,15 @@ TensorFlowServingClient client = TensorFlowServingClient.builder()
 To get the status of a model:
 
 ```java
-TensorFlowServingClient client = TensorFlowServingClient.newInstance();
-
-GetModelStatusRequest request = GetModelStatusRequest.newBuilder()
-    .setModelSpec(ModelSpec.newBuilder()
-        .setName("half_plus_two")
-        .setVersion(Int64Value.of(123)))
-    .build();
-GetModelStatusResponse response = client.getModelStatus(request);
-System.out.println(response);
+try (TensorFlowServingClient client = TensorFlowServingClient.newInstance()) {
+    GetModelStatusRequest request = GetModelStatusRequest.newBuilder()
+        .setModelSpec(ModelSpec.newBuilder()
+            .setName("half_plus_two")
+            .setVersion(Int64Value.of(123)))
+        .build();
+    GetModelStatusResponse response = client.getModelStatus(request);
+    System.out.println(response);
+}
 ```
 
 Output:
@@ -88,16 +88,16 @@ model_version_status {
 To get the metadata of a model:
 
 ```java
-TensorFlowServingClient client = TensorFlowServingClient.newInstance();
-
-GetModelMetadataRequest request = GetModelMetadataRequest.newBuilder()
-    .setModelSpec(ModelSpec.newBuilder()
-        .setName("half_plus_two")
-        .setVersion(Int64Value.of(123)))
-    .addMetadataField("signature_def")) // metadata_field is mandatory
-    .build();
-GetModelMetadataResponse response = client.getModelMetadata(request);
-System.out.println(response);
+try (TensorFlowServingClient client = TensorFlowServingClient.newInstance()) {
+    GetModelMetadataRequest request = GetModelMetadataRequest.newBuilder()
+        .setModelSpec(ModelSpec.newBuilder()
+            .setName("half_plus_two")
+            .setVersion(Int64Value.of(123)))
+        .addMetadataField("signature_def")) // metadata_field is mandatory
+        .build();
+    GetModelMetadataResponse response = client.getModelMetadata(request);
+    System.out.println(response);
+}
 ```
 
 Output:
@@ -123,23 +123,23 @@ metadata {
 To classify:
 
 ```java
-TensorFlowServingClient client = TensorFlowServingClient.newInstance();
-
-ClassificationRequest request = ClassificationRequest.newBuilder()
-    .setModelSpec(ModelSpec.newBuilder()
-        .setName("half_plus_two")
-        .setVersion(Int64Value.of(123))
-        .setSignatureName("classify_x_to_y"))
-    .setInput(Input.newBuilder()
-        .setExampleList(ExampleList.newBuilder()
-            .addExamples(Example.newBuilder()
-                .setFeatures(Features.newBuilder()
-                    .putFeature("x", Feature.newBuilder()
-                        .setFloatList(FloatList.newBuilder().addValue(1.0f))
-                        .build())))))
-    .build();
-ClassificationResponse response = client.classify(request);
-System.out.println(response);
+try (TensorFlowServingClient client = TensorFlowServingClient.newInstance()) {
+    ClassificationRequest request = ClassificationRequest.newBuilder()
+        .setModelSpec(ModelSpec.newBuilder()
+            .setName("half_plus_two")
+            .setVersion(Int64Value.of(123))
+            .setSignatureName("classify_x_to_y"))
+        .setInput(Input.newBuilder()
+            .setExampleList(ExampleList.newBuilder()
+                .addExamples(Example.newBuilder()
+                    .setFeatures(Features.newBuilder()
+                        .putFeature("x", Feature.newBuilder()
+                            .setFloatList(FloatList.newBuilder().addValue(1.0f))
+                            .build())))))
+        .build();
+    ClassificationResponse response = client.classify(request);
+    System.out.println(response);
+}
 ```
 
 Output:
@@ -166,23 +166,23 @@ model_spec {
 To regress:
 
 ```java
-TensorFlowServingClient client = TensorFlowServingClient.newInstance();
-
-RegressionRequest request = RegressionRequest.newBuilder()
-    .setModelSpec(ModelSpec.newBuilder()
-        .setName("half_plus_two")
-        .setVersion(Int64Value.of(123))
-        .setSignatureName("regress_x_to_y"))
-    .setInput(Input.newBuilder()
-        .setExampleList(ExampleList.newBuilder()
-            .addExamples(Example.newBuilder()
-                .setFeatures(Features.newBuilder()
-                    .putFeature("x", Feature.newBuilder()
-                        .setFloatList(FloatList.newBuilder().addValue(1.0f))
-                        .build())))))
-    .build();
-RegressionResponse response = client.regress(request);
-System.out.println(response);
+try (TensorFlowServingClient client = TensorFlowServingClient.newInstance()) {
+    RegressionRequest request = RegressionRequest.newBuilder()
+        .setModelSpec(ModelSpec.newBuilder()
+            .setName("half_plus_two")
+            .setVersion(Int64Value.of(123))
+            .setSignatureName("regress_x_to_y"))
+        .setInput(Input.newBuilder()
+            .setExampleList(ExampleList.newBuilder()
+                .addExamples(Example.newBuilder()
+                    .setFeatures(Features.newBuilder()
+                        .putFeature("x", Feature.newBuilder()
+                            .setFloatList(FloatList.newBuilder().addValue(1.0f))
+                            .build())))))
+        .build();
+    RegressionResponse response = client.regress(request);
+    System.out.println(response);
+}
 ```
 
 Output:
@@ -207,23 +207,23 @@ model_spec {
 To predict:
 
 ```java
-TensorFlowServingClient client = TensorFlowServingClient.newInstance();
-
-PredictRequest request = PredictRequest.newBuilder()
-    .setModelSpec(ModelSpec.newBuilder()
-        .setName("half_plus_two")
-        .setVersion(Int64Value.of(123)))
-    .putInputs("x", TensorProto.newBuilder()
-        .setDtype(DataType.DT_FLOAT)
-        .setTensorShape(TensorShapeProto.newBuilder()
-            .addDim(Dim.newBuilder().setSize(3)))
-        .addFloatVal(1.0f)
-        .addFloatVal(2.0f)
-        .addFloatVal(5.0f)
-        .build())
-    .build();
-PredictResponse response = client.predict(request);
-System.out.println(response);
+try (TensorFlowServingClient client = TensorFlowServingClient.newInstance()) {
+    PredictRequest request = PredictRequest.newBuilder()
+        .setModelSpec(ModelSpec.newBuilder()
+            .setName("half_plus_two")
+            .setVersion(Int64Value.of(123)))
+        .putInputs("x", TensorProto.newBuilder()
+            .setDtype(DataType.DT_FLOAT)
+            .setTensorShape(TensorShapeProto.newBuilder()
+                .addDim(Dim.newBuilder().setSize(3)))
+            .addFloatVal(1.0f)
+            .addFloatVal(2.0f)
+            .addFloatVal(5.0f)
+            .build())
+        .build();
+    PredictResponse response = client.predict(request);
+    System.out.println(response);
+}
 ```
 
 Output:

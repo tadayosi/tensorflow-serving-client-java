@@ -14,14 +14,15 @@ import tensorflow.serving.Model.ModelSpec;
 public class model_status {
 
     public static void main(String... args) throws Exception {
-        var client = TensorFlowServingClient.newInstance();
-        var request = GetModelStatusRequest.newBuilder()
-                .setModelSpec(ModelSpec.newBuilder()
-                        .setName("half_plus_two")
-                        .setVersion(Int64Value.of(123)))
-                .build();
-        var response = client.getModelStatus(request);
-        System.out.println("Response>");
-        System.out.println(response);
+        try (var client = TensorFlowServingClient.newInstance()) {
+            var request = GetModelStatusRequest.newBuilder()
+                    .setModelSpec(ModelSpec.newBuilder()
+                            .setName("half_plus_two")
+                            .setVersion(Int64Value.of(123)))
+                    .build();
+            var response = client.getModelStatus(request);
+            System.out.println("Response>");
+            System.out.println(response);
+        }
     }
 }

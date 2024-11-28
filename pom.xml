@@ -4,7 +4,7 @@
 
     <groupId>com.github.tadayosi.tensorflow</groupId>
     <artifactId>tensorflow-serving-client</artifactId>
-    <version>0.1.1</version>
+    <version>0.2-SNAPSHOT</version>
 
     <name>TensorFlow Serving Client for Java</name>
     <description>A Java client library for TensorFlow Serving</description>
@@ -14,7 +14,7 @@
         <connection>scm:git:git@github.com:tadayosi/tensorflow-serving-client-java.git</connection>
         <developerConnection>scm:git:git@github.com:tadayosi/tensorflow-serving-client-java.git</developerConnection>
         <url>git@github.com:tadayosi/tensorflow-serving-client-java.git</url>
-        <tag>v0.1.1</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>

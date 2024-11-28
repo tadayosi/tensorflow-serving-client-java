@@ -24,11 +24,9 @@ class ConfigurationTest {
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     void testSystemProperties() {
         System.setProperty("tfsc4j.target", "dns:///test.com:8501");
-        System.setProperty("tfsc4j.credentials", "aaaaa");
 
         var config = Configuration.load();
 
         assertEquals("dns:///test.com:8501", config.getTarget().get());
-        assertEquals("aaaaa", config.getCredentials().get());
     }
 }

@@ -1,5 +1,6 @@
 package com.github.tadayosi.tensorflow.serving.client;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
@@ -28,5 +29,10 @@ class TensorFlowServingTestSupport {
         client = TensorFlowServingClient.builder()
             .target("localhost:" + tensorflowServing.getMappedPort(8500))
             .build();
+    }
+
+    @AfterEach
+    void tearDown() {
+        client.close();
     }
 }

@@ -1,5 +1,6 @@
 package com.github.tadayosi.tensorflow.serving.client;
 
+import java.io.Closeable;
 import java.util.Optional;
 
 import io.grpc.ChannelCredentials;
@@ -14,15 +15,16 @@ import tensorflow.serving.Predict;
 import tensorflow.serving.PredictionServiceGrpc;
 import tensorflow.serving.RegressionOuterClass;
 
-public class TensorFlowServingClient implements TensorFlowServingApi {
+public class TensorFlowServingClient implements TensorFlowServingApi, Closeable {
 
     private static final String DEFAULT_TARGET = "localhost:8500";
 
+    private final ManagedChannel channel;
     private final ModelServiceGrpc.ModelServiceBlockingStub modelService;
     private final PredictionServiceGrpc.PredictionServiceBlockingStub predictionService;
 
     private TensorFlowServingClient(String target, ChannelCredentials credentials) {
-        ManagedChannel channel = Grpc.newChannelBuilder(target, credentials).build();
+        this.channel = Grpc.newChannelBuilder(target, credentials).build();
         this.modelService = ModelServiceGrpc.newBlockingStub(channel);
         this.predictionService = PredictionServiceGrpc.newBlockingStub(channel);
     }
@@ -33,6 +35,11 @@ public class TensorFlowServingClient implements TensorFlowServingApi {
 
     public static Builder builder() {
         return new Builder();
+    }
+
+    @Override
+    public void close() {
+        channel.shutdown();
     }
 
     @Override

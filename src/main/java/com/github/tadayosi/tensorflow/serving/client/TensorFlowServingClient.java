@@ -1,6 +1,5 @@
 package com.github.tadayosi.tensorflow.serving.client;
 
-import java.io.Closeable;
 import java.util.Optional;
 
 import io.grpc.ChannelCredentials;
@@ -15,7 +14,7 @@ import tensorflow.serving.Predict;
 import tensorflow.serving.PredictionServiceGrpc;
 import tensorflow.serving.RegressionOuterClass;
 
-public class TensorFlowServingClient implements TensorFlowServingApi, Closeable {
+public class TensorFlowServingClient implements TensorFlowServingApi, AutoCloseable {
 
     private static final String DEFAULT_TARGET = "localhost:8500";
 

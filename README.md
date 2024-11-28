@@ -33,7 +33,7 @@ TensorFlow Serving Client for Java (TFSC4J) is a Java client library for [Tensor
     <dependency>
         <groupId>com.github.tadayosi</groupId>
         <artifactId>tensorflow-serving-client-java</artifactId>
-        <version>v0.1</version>
+        <version>v0.1.1</version>
     </dependency>
     ```
 

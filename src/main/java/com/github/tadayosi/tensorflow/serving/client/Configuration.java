@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.Optional;
 import java.util.Properties;
 
+import io.grpc.ChannelCredentials;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,13 +19,14 @@ public class Configuration {
     public static final String CREDENTIALS = "credentials";
 
     private final Optional<String> target;
-    private final Optional<String> credentials;
+    private final Optional<ChannelCredentials> credentials;
 
     private Configuration() {
         Properties props = loadProperties();
 
         this.target = loadProperty(TARGET, props);
-        this.credentials = loadProperty(CREDENTIALS, props);
+        //this.credentials = loadProperty(CREDENTIALS, props);
+        this.credentials = Optional.empty();
     }
 
     static Properties loadProperties() {
@@ -59,7 +61,7 @@ public class Configuration {
         return target;
     }
 
-    public Optional<String> getCredentials() {
+    public Optional<ChannelCredentials> getCredentials() {
         return credentials;
     }
 }

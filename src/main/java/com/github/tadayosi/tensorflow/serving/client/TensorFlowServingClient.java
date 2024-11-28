@@ -41,7 +41,8 @@ public class TensorFlowServingClient implements TensorFlowServingApi {
     }
 
     @Override
-    public GetModelMetadata.GetModelMetadataResponse getModelMetadata(GetModelMetadata.GetModelMetadataRequest request) {
+    public GetModelMetadata.GetModelMetadataResponse getModelMetadata(
+        GetModelMetadata.GetModelMetadataRequest request) {
         return predictionService.getModelMetadata(request);
     }
 
@@ -65,14 +66,14 @@ public class TensorFlowServingClient implements TensorFlowServingApi {
         private final Configuration configuration = Configuration.load();
 
         private Optional<String> target = configuration.getTarget();
-        private Optional<String> credentials = configuration.getCredentials();
+        private Optional<ChannelCredentials> credentials = configuration.getCredentials();
 
         public Builder target(String target) {
             this.target = Optional.of(target);
             return this;
         }
 
-        public Builder credentials(String credentials) {
+        public Builder credentials(ChannelCredentials credentials) {
             this.credentials = Optional.of(credentials);
             return this;
         }
@@ -80,7 +81,7 @@ public class TensorFlowServingClient implements TensorFlowServingApi {
         public TensorFlowServingClient build() {
             return new TensorFlowServingClient(
                 target.orElse(DEFAULT_TARGET),
-                InsecureChannelCredentials.create());
+                credentials.orElse(InsecureChannelCredentials.create()));
         }
     }
 }

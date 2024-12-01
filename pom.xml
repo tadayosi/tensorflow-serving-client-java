@@ -34,7 +34,7 @@
         <build-helper-maven-plugin-version>3.6.0</build-helper-maven-plugin-version>
         <maven-failsafe-plugin-version>3.5.0</maven-failsafe-plugin-version>
         <maven-release-plugin-version>3.1.1</maven-release-plugin-version>
-        <maven-surefire-plugin-version>3.5.0</maven-surefire-plugin-version>
+        <maven-surefire-plugin-version>3.5.2</maven-surefire-plugin-version>
         <protobuf-maven-plugin-version>2.7.0</protobuf-maven-plugin-version>
     </properties>
 

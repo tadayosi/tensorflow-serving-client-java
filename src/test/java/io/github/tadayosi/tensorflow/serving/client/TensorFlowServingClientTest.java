@@ -1,4 +1,4 @@
-package com.github.tadayosi.tensorflow.serving.client;
+package io.github.tadayosi.tensorflow.serving.client;
 
 import com.google.protobuf.Int64Value;
 import org.junit.jupiter.api.Test;

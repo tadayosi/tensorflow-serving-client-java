@@ -1,4 +1,4 @@
-package com.github.tadayosi.tensorflow.serving.client;
+package io.github.tadayosi.tensorflow.serving.client;
 
 import java.io.InputStream;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.github.tadayosi.tensorflow.serving.client;
+package io.github.tadayosi.tensorflow.serving.client;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

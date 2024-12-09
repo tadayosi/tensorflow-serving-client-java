@@ -1,8 +1,7 @@
 ///usr/bin/env jbang "$0" "$@" ; exit $?
 
 //JAVA 17+
-//REPOS mavencentral,jitpack=https://jitpack.io
-//DEPS com.github.tadayosi:tensorflow-serving-client-java:main-SNAPSHOT
+//DEPS io.github.tadayosi.tensorflow:tensorflow-serving-client:0.2.0
 //DEPS org.slf4j:slf4j-simple:2.0.16
 
 import org.tensorflow.framework.DataType;
@@ -10,7 +9,7 @@ import org.tensorflow.framework.TensorProto;
 import org.tensorflow.framework.TensorShapeProto;
 import org.tensorflow.framework.TensorShapeProto.Dim;
 
-import com.github.tadayosi.tensorflow.serving.client.TensorFlowServingClient;
+import io.github.tadayosi.tensorflow.serving.client.TensorFlowServingClient;
 import com.google.protobuf.Int64Value;
 
 import tensorflow.serving.Model.ModelSpec;

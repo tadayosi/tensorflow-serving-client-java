@@ -1,6 +1,6 @@
 # TensorFlow Serving Client for Java
 
-[![Release](https://jitpack.io/v/tadayosi/tensorflow-serving-client-java.svg)](<https://jitpack.io/#tadayosi/tensorflow-serving-client-java>)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.tadayosi.tensorflow/tensorflow-serving-client/badge.svg?style=flat)](https://repo1.maven.org/maven2/io/github/tadayosi/tensorflow/tensorflow-serving-client/)
 [![Test](https://github.com/tadayosi/tensorflow-serving-client-java/actions/workflows/test.yml/badge.svg)](https://github.com/tadayosi/tensorflow-serving-client-java/actions/workflows/test.yml)
 
 TensorFlow Serving Client for Java (TFSC4J) is a Java client library for [TensorFlow Serving](https://github.com/tensorflow/serving). It supports the following [TensorFlow Serving Client API (gRPC)](https://github.com/tensorflow/serving/tree/master/tensorflow_serving/apis):
@@ -16,26 +16,16 @@ TensorFlow Serving Client for Java (TFSC4J) is a Java client library for [Tensor
 
 ## Install
 
-1. Add the [JitPack](https://jitpack.io) repository to your `pom.xml`:
 
-    ```xml
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
-    ```
+Add the dependency to your `pom.xml`:
 
-2. Add the dependency:
-
-    ```xml
-    <dependency>
-        <groupId>com.github.tadayosi</groupId>
-        <artifactId>tensorflow-serving-client-java</artifactId>
-        <version>v0.1.1</version>
-    </dependency>
-    ```
+```xml
+<dependency>
+    <groupId>io.github.tadayosi.tensorflow</groupId>
+    <artifactId>tensorflow-serving-client</artifactId>
+    <version>0.2.0</version>
+</dependency>
+```
 
 ## Usage
 

@@ -7,7 +7,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -68,15 +68,14 @@ public class predict_mnist {
         if (width != 28 || height != 28) {
             throw new IllegalArgumentException("Image size must be 28x28");
         }
-        var normalised = new Float[width * height];
-        var i = 0;
+        var normalised = new ArrayList<Float>(width * height);
         for (var y = 0; y < height; y++) {
             for (var x = 0; x < width; x++) {
                 var rgb = image.getRGB(x, y);
-                normalised[i++] = (rgb & 0xFF) / 255.0f;
+                normalised.add( (rgb & 0xFF) / 255.0f);
             }
         }
-        return Arrays.asList(normalised);
+        return normalised;
     }
 
     static int argmax(TensorProto tensor) {

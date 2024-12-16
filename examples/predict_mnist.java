@@ -35,29 +35,33 @@ public class predict_mnist {
                     System.out.println("Directory: " + file.getFileName());
                     return;
                 }
-                try {
-                    var data = preprocess(file);
-                    var inputs = TensorProto.newBuilder()
-                            .setDtype(DataType.DT_FLOAT)
-                            .setTensorShape(TensorShapeProto.newBuilder()
-                                    .addDim(Dim.newBuilder().setSize(28))
-                                    .addDim(Dim.newBuilder().setSize(28)))
-                            .addAllFloatVal(data)
-                            .build();
-                    var request = PredictRequest.newBuilder()
-                            .setModelSpec(ModelSpec.newBuilder()
-                                    .setName("mnist")
-                                    .setVersion(Int64Value.of(1)))
-                            .putInputs("keras_tensor", inputs)
-                            .build();
-                    var response = client.predict(request);
-                    var output = response.getOutputsOrThrow("output_0");
-                    var answer = argmax(output);
-                    System.out.println("  %s => %s".formatted(file.getFileName(), answer));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                predict(client, file);
             });
+        }
+    }
+
+    static void predict(TensorFlowServingClient client, Path file) {
+        try {
+            var data = preprocess(file);
+            var inputs = TensorProto.newBuilder()
+                    .setDtype(DataType.DT_FLOAT)
+                    .setTensorShape(TensorShapeProto.newBuilder()
+                            .addDim(Dim.newBuilder().setSize(28))
+                            .addDim(Dim.newBuilder().setSize(28)))
+                    .addAllFloatVal(data)
+                    .build();
+            var request = PredictRequest.newBuilder()
+                    .setModelSpec(ModelSpec.newBuilder()
+                            .setName("mnist")
+                            .setVersion(Int64Value.of(1)))
+                    .putInputs("keras_tensor", inputs)
+                    .build();
+            var response = client.predict(request);
+            var output = response.getOutputsOrThrow("output_0");
+            var answer = argmax(output);
+            System.out.println("  %s => %s".formatted(file.getFileName(), answer));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -72,7 +76,7 @@ public class predict_mnist {
         for (var y = 0; y < height; y++) {
             for (var x = 0; x < width; x++) {
                 var rgb = image.getRGB(x, y);
-                normalised.add( (rgb & 0xFF) / 255.0f);
+                normalised.add((rgb & 0xFF) / 255.0f);
             }
         }
         return normalised;

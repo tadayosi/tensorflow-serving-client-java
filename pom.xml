@@ -55,7 +55,7 @@
         <maven-release-plugin-version>3.1.1</maven-release-plugin-version>
         <maven-source-plugin-version>3.3.1</maven-source-plugin-version>
         <maven-surefire-plugin-version>3.5.3</maven-surefire-plugin-version>
-        <protobuf-maven-plugin-version>3.6.1</protobuf-maven-plugin-version>
+        <protobuf-maven-plugin-version>3.8.2</protobuf-maven-plugin-version>
     </properties>
 
     <dependencyManagement>

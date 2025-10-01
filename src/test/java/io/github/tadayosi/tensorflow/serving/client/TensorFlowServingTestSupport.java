@@ -10,7 +10,7 @@ import org.testcontainers.utility.MountableFile;
 
 class TensorFlowServingTestSupport {
 
-    private static final String IMAGE_NAME = "bitnami/tensorflow-serving";
+    private static final String IMAGE_NAME = "bitnamilegacy/tensorflow-serving";
 
     @Container
     @SuppressWarnings("resource")

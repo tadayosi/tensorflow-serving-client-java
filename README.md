@@ -23,7 +23,7 @@ Add the dependency to your `pom.xml`:
 <dependency>
     <groupId>io.github.tadayosi.tensorflow</groupId>
     <artifactId>tensorflow-serving-client</artifactId>
-    <version>0.2.1</version>
+    <version>0.2.2</version>
 </dependency>
 ```
 
